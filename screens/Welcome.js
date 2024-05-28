@@ -3,10 +3,12 @@ import React from 'react'
 import { LinearGradient } from "expo-linear-gradient";
 import COLORS from '../constants/color';
 import Button from '../components/Button';
+import { ScrollView } from 'react-native';
 
 const Welcome = ({ navigation }) => {
 
     return (
+       
         <LinearGradient
             style={{
                 flex: 1

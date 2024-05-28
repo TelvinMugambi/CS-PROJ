@@ -17,9 +17,23 @@ export const Signup = ({ navigation }) => {
     const [loading, setLoading] = useState(false)
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
-
     
 
+    // const signUpUser = async () => {
+        
+    //     const { data, error } = await supabase.auth.signUp({
+    //         email: email,
+    //         password: password
+    //     })
+    //     if (error) {
+    //         console.error('Error signing up:', error);
+    //     } else {
+    //         console.log('User signed up successfully:', data);
+    //         navigation.navigate("Login")
+    //     }
+    // };
+
+    
     async function signUpWithEmail() {
         setLoading(true)
         const {
@@ -33,7 +47,7 @@ export const Signup = ({ navigation }) => {
         if (error) Alert.alert(error.message)
         if (!session) Alert.alert('Please check your inbox for email verification!')
         setLoading(false)
-    }
+      }
 
     
     
@@ -136,7 +150,7 @@ export const Signup = ({ navigation }) => {
 
                 <View style={{
                     flexDirection: 'row',
-                    marginVertical: 6
+                    marginVertical: 1
                 }}>
                     <Checkbox
                         style={{ marginRight: 8 }}
@@ -160,7 +174,7 @@ export const Signup = ({ navigation }) => {
                     onPress={() => signUpWithEmail()}
                 />
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 20 }}>
+                {/* <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 20 }}>
                     <View
                         style={{
                             flex: 1,
@@ -178,7 +192,7 @@ export const Signup = ({ navigation }) => {
                             marginHorizontal: 10
                         }}
                     />
-                </View>
+                </View> */}
 
                 <View style={{
                     flexDirection: 'row',
@@ -186,7 +200,7 @@ export const Signup = ({ navigation }) => {
                 }}>
                     
 
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         onPress={() => console.log('pressed')}
                         style={{
                             flex: 1,
@@ -211,7 +225,7 @@ export const Signup = ({ navigation }) => {
                         />
 
                         <Text>Google</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
 
                 <View style={{

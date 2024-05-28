@@ -23,6 +23,25 @@ const Login = ({ navigation }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
 
+    const signinwithotp = async () =>{
+
+        const {data, error} = await supabase.auth.signInWithOtp({
+    
+          email:email,
+          options:{
+            emailRedirectTo: 'bio.roughwork://Home'
+          }
+        })
+    
+        if (error){
+          console.error('Error signing up user: ', error)
+        }
+        else{
+          console.log ('User logged in successfully: ', data)
+          navigation.navigate("Home Page")
+        }
+    }
+
     //Sign In with Email
     // async function signInWithEmail() {
     //     setLoading(true)
@@ -185,10 +204,10 @@ const Login = ({ navigation }) => {
                         marginTop: 18,
                         marginBottom: 4,
                     }}
-                    disabled={loading} onPress={() => signInWithEmail()}
+                    disabled={loading} onPress={() => signinwithotp()}
                 />
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 20 }}>
+                {/* <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 20 }}>
                     <View
                         style={{
                             flex: 1,
@@ -240,7 +259,7 @@ const Login = ({ navigation }) => {
 
                         <Text>Google</Text>
                     </TouchableOpacity>
-                </View>
+                </View> */}
 
                 <View style={{
                     flexDirection: "row",
@@ -260,7 +279,7 @@ const Login = ({ navigation }) => {
                     </Pressable>
                 </View>
 
-                <View style={{
+                {/* <View style={{
                     flexDirection: "row",
                     justifyContent: "center",
                     marginVertical: 0
@@ -275,7 +294,7 @@ const Login = ({ navigation }) => {
                         }}>Reset password</Text>
                     </Pressable>
 
-                </View>
+                </View> */}
             </View>
         </SafeAreaView>
     )
