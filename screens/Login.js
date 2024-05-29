@@ -7,8 +7,7 @@ import Checkbox from "expo-checkbox"
 import Button from '../components/Button';
 import { supabase } from '../lib/supabase';
 import { sendMagicLink} from '../components/Auth';
-
-import HomePage from './HomePage';
+import Application from '../navigation/Application';
 //Implementing Login with supabase
 // Tells Supabase Auth to continuously refresh the session automatically if
 // the app is in the foreground. When this is added, you will continue to receive
@@ -29,7 +28,7 @@ const Login = ({ navigation }) => {
     
           email:email,
           options:{
-            emailRedirectTo: 'bio.roughwork://Home'
+            emailRedirectTo: 'bio.roughwork://'
           }
         })
     
@@ -38,7 +37,7 @@ const Login = ({ navigation }) => {
         }
         else{
           console.log ('User logged in successfully: ', data)
-          navigation.navigate("Home Page")
+          navigation.navigate("Home")
         }
     }
 
@@ -51,7 +50,7 @@ const Login = ({ navigation }) => {
     //     })
 
     //     if (!error){
-    //         navigation.navigate("HomePage");
+    //         navigation.navigate("Home");
     //     }
     //     else{
     //         Alert.alert('User does not exist')
@@ -278,17 +277,7 @@ const Login = ({ navigation }) => {
                         }}>Register</Text>
                     </Pressable>
 
-                    <Text style={{ fontSize: 16, color: COLORS.black }}>Navigate to home</Text>
-                    <Pressable
-                        onPress={() => navigation.navigate("HomePage")}
-                    >
-                        <Text style={{
-                            fontSize: 16,
-                            color: COLORS.primary,
-                            fontWeight: "bold",
-                            marginLeft: 6
-                        }}>Home</Text>
-                    </Pressable>
+                    
                 </View>
 
                 {/* <View style={{

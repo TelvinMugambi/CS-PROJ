@@ -1,9 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { HomePage,Login, Notifications, PasswordResetPage, ResetPassword, Signup, Welcome } from "./screens";
 import * as Linking from "expo-linking";
 import { createSessionFromUrl } from './components/Auth';
 import React from "react";
+import Authentication from './navigation/Authentication';
+import Application from './navigation/Application';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -15,57 +16,16 @@ export default function App() {
       createSessionFromUrl(url);
     }
   }, [url]);
-
-  
   
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName='Welcome'
-      >
-        <Stack.Screen
-          name="Welcome"
-          component={Welcome}
-          options={{
-            headerShown: false
-          }}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{
-            headerShown: false
-          }}
-        />
-        <Stack.Screen
-          name="Signup"
-          component={Signup}
-          options={{
-            headerShown: false
-          }}
-        />
-        <Stack.Screen
-          name="Reset Password"
-          component={ResetPassword}
-          options={{
-            headerShown: false
-          }}
-        />
-        <Stack.Screen
-          name="Password Reset"
-          component={PasswordResetPage}
-          options={{
-            headerShown: false
-          }}
-        />
-        <Stack.Screen
-          name="HomePage"
-          component={HomePage}
-          options={{
-            headerShown: false
-          }}
-        />
+  <Stack.Navigator>
+        <Stack.Screen name = "Authentication" component={Authentication} options={{headerShown:false}} />
+        <Stack.Screen name = "Application" component={Application} options={{headerShown:false}} />
       </Stack.Navigator>
+
     </NavigationContainer>
+    
+    
   );
 };

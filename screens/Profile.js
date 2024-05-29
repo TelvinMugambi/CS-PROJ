@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 
 
-export default function Notifications(){
+export default function Profile(){
     return(
         <View style={{
             flex: 1,
@@ -12,7 +12,7 @@ export default function Notifications(){
                 fontSize: 16,
                 fontWeight: 400,
                 marginVertical: 8,
-            }}>Notifications</Text>
+            }}>Profile</Text>
         </View>
     )
 }
