@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { HomePage,Login, PasswordResetPage, ResetPassword, Signup, Welcome } from "./screens";
+import { HomePage,Login, Notifications, PasswordResetPage, ResetPassword, Signup, Welcome } from "./screens";
 import * as Linking from "expo-linking";
 import { createSessionFromUrl } from './components/Auth';
 import React from "react";
@@ -59,7 +59,7 @@ export default function App() {
           }}
         />
         <Stack.Screen
-          name="Home Page"
+          name="HomePage"
           component={HomePage}
           options={{
             headerShown: false

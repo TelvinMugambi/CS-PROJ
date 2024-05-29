@@ -277,6 +277,18 @@ const Login = ({ navigation }) => {
                             marginLeft: 6
                         }}>Register</Text>
                     </Pressable>
+
+                    <Text style={{ fontSize: 16, color: COLORS.black }}>Navigate to home</Text>
+                    <Pressable
+                        onPress={() => navigation.navigate("HomePage")}
+                    >
+                        <Text style={{
+                            fontSize: 16,
+                            color: COLORS.primary,
+                            fontWeight: "bold",
+                            marginLeft: 6
+                        }}>Home</Text>
+                    </Pressable>
                 </View>
 
                 {/* <View style={{
