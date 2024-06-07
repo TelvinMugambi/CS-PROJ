@@ -37,7 +37,7 @@ const Login = ({ navigation }) => {
         }
         else{
           console.log ('User logged in successfully: ', data)
-          navigation.navigate("Home")
+          navigation.navigate("Application", {screen: 'Home'})
         }
     }
 
@@ -204,6 +204,16 @@ const Login = ({ navigation }) => {
                         marginBottom: 4,
                     }}
                     disabled={loading} onPress={() => signinwithotp()}
+                />
+
+                <Button
+                    title="Home"
+                    filled
+                    style={{
+                        marginTop: 18,
+                        marginBottom: 4,
+                    }}
+                    disabled={loading} onPress={() =>  navigation.navigate("Application", {screen: 'Home'})}
                 />
 
                 {/* <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 20 }}>
