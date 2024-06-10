@@ -1,18 +1,24 @@
-import { View, Text } from 'react-native'
+import React from 'react';
+import MapView from 'react-native-maps';
+import { StyleSheet, View } from 'react-native';
 
-
-export default function Maps(){
-    return(
-        <View style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center'
-        }}>
-            <Text style={{
-                fontSize: 16,
-                fontWeight: 400,
-                marginVertical: 8,
-            }}>Maps</Text>
-        </View>
-    )
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <MapView 
+        style={styles.map}
+        
+      />
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  map: {
+    width: '100%',
+    height: '100%',
+  },
+});
