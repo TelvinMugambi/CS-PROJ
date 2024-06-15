@@ -23,12 +23,12 @@ const Login = ({navigation}) => {
     //Sign In with Email
     async function signInWithEmail() {
         setLoading(true)
-        const {error } = await supabase.auth.signInWithPassword({
+        const {data,error } = await supabase.auth.signInWithPassword({
           email: email,
           password: password,
         })
 
-        if (!error){
+        if (data){
             navigation.navigate("Application", {screen: 'Home'});
         }
         else{
@@ -145,16 +145,26 @@ const Login = ({navigation}) => {
                     }}
                     disabled={loading} onPress={() => signInWithEmail()}
                 />
+                
+                <View style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    marginVertical: 22
+                }}>
+                    <Text style={{ fontSize: 16, color: COLORS.black }}>Forgot your password? </Text>
+                    <Pressable
+                        onPress={() => navigation.navigate("ResetPassword")}
+                    >
+                        <Text style={{
+                            fontSize: 16,
+                            color: COLORS.primary,
+                            fontWeight: "bold",
+                            marginLeft: 6
+                        }}>Forgot Password</Text>
+                    </Pressable>
+                </View>
 
-                <Button
-                    title="Home"
-                    filled
-                    style={{
-                        marginTop: 18,
-                        marginBottom: 4,
-                    }}
-                    disabled={loading} onPress={() =>  navigation.navigate("Application", {screen: 'Home'})}
-                />
+                
                 <View style={{
                     flexDirection: "row",
                     justifyContent: "center",

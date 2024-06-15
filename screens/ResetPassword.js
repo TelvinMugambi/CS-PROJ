@@ -18,13 +18,12 @@ export const ResetPassword = ({ navigation }) => {
         try {
           const { error } = await supabase.auth.resetPasswordForEmail(email, {
 
-            redirectTo: "PasswordResetPage"
+            redirectTo: "bio.telvin://screens/PasswordResetPage"
             // replace with the actual URL of your PasswordResetPage
           });
           if (error) {
             throw error;
           }
-          setSendSuccess(true);
         } catch (error) {
           console.log(error);
         }

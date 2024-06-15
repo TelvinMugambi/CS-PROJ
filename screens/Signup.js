@@ -36,7 +36,7 @@ export const Signup = ({navigation}) => {
           email: email,
           password: password,
           options: {
-            emailRedirectTo: 'bio.telvin://Home',
+            emailRedirectTo: 'bio.telvin://screens/Home',
             data:{username:username}
           },
           

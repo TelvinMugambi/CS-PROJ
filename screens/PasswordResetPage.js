@@ -13,13 +13,21 @@ const PasswordResetPage = ({ navigation }) => {
     const [confirmnewpassword, setconfirmnewpassword] = useState('');
 
     const changepassword = async () =>{
-        if( newpassword !== confirmnewpassword) {
-            return alert('Passwords do not match')
+        try{
+            if( newpassword !== confirmnewpassword) {
+                return alert('Passwords do not match')
+            }
+            const {data, error} = await supabase.auth.updateUser({
+                password: data.newpassword,
+                
+            })
+        } 
+
+        catch(error){
+            console.log(error)
         }
-        const {data, error} = await supabase.auth.updateUser({
-            password: data.password,
-            
-        })
+
+        
     }
     
     return (
