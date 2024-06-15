@@ -145,6 +145,17 @@ const Login = ({navigation}) => {
                     }}
                     disabled={loading} onPress={() => signInWithEmail()}
                 />
+
+
+                <Button
+                    title="Home"
+                    filled
+                    style={{
+                        marginTop: 18,
+                        marginBottom: 4,
+                    }}
+                    disabled={loading} onPress={() => navigation.navigate('Application', { screen: 'Home' })}
+                />
                 
                 <View style={{
                     flexDirection: "row",
