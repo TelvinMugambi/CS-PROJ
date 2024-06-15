@@ -3,6 +3,7 @@ import COLORS from '../constants/color';
 import Button from '../components/Button';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
+import Account from '../components/Account';
 import { Session } from '@supabase/supabase-js'
 
 
@@ -10,33 +11,7 @@ import { Session } from '@supabase/supabase-js'
 export default function Profile(){
     const{email, setEmail} = useState('')
     return(
-        <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={24} color="black" />
-        </TouchableOpacity>
-  
-        <View style={styles.profileContainer}>
-          <TouchableOpacity onPress={console.log('Insert Image')}>
-            {/* A way to choose an Image */}
-            <View style={styles.editIcon}>
-              <Ionicons name="pencil" size={20} color="orange" />
-            </View>
-          </TouchableOpacity>
-          <Text style={styles.name}>GFXAgency</Text>
-          <Text style={styles.designation}>UI UX DESIGN</Text>
-        </View>
-  
-        <TextInput
-          style={styles.input}
-          placeholder="Your Email"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-        />
-        
-  
-        <Button title="Logout" onPress={console.log("Handle log out")} color="orange" />
-      </View>
+        <Account />
     )
 }
 const styles = StyleSheet.create({

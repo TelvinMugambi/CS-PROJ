@@ -37,6 +37,18 @@ const Login = ({navigation}) => {
         if (error) Alert.alert(error.message)
         setLoading(false)
     } 
+    //sign in with magic link
+    async function signInWithEmail() {
+        const { data, error } = await supabase.auth.signInWithOtp({
+          email: email,
+          options: {
+            // set this to false if you do not want the user to be automatically signed up
+            shouldCreateUser: false,
+            emailRedirectTo: 'http://localhost:8081/',
+          },
+        })
+      }
+      
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
             <View style={{ flex: 1, marginHorizontal: 22 }}>

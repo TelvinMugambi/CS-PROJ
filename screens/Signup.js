@@ -153,6 +153,7 @@ export const Signup = ({navigation}) => {
                             style={{
                                 width: "100%"
                             }}
+                            
                         />
 
                         <TouchableOpacity
