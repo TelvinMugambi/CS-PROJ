@@ -14,7 +14,7 @@ import { supabase } from '../lib/supabase';
 // if the user's session is terminated. This should only be registered once.
 
 
-const Login = ({ navigation }) => {
+const Login = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);

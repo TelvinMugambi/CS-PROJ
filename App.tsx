@@ -5,6 +5,8 @@ import { createSessionFromUrl } from './components/Auth';
 import React from "react";
 import Authentication from './navigation/Authentication';
 import Application from './navigation/Application';
+import { Session } from '@supabase/supabase-js'
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -18,6 +20,8 @@ export default function App() {
   }, [url]);
   
   return (
+
+
     <NavigationContainer>
   <Stack.Navigator>
         <Stack.Screen name = "Authentication" component={Authentication} options={{headerShown:false}} />

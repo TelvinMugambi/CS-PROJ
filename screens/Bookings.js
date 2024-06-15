@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 
 
-export default function Chats(){
+export default function Bookings(){
     return(
         <View style={{
             flex: 1,
@@ -12,7 +12,7 @@ export default function Chats(){
                 fontSize: 16,
                 fontWeight: 400,
                 marginVertical: 8,
-            }}>Chats</Text>
+            }}>Bookings</Text>
         </View>
     )
 }

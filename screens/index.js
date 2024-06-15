@@ -6,9 +6,7 @@ import PasswordResetPage from "./PasswordResetPage";
 import Home from "./Home";
 import Notifications from "./Notifications";
 import Profile from "./Profile";
-import Chats from "./Chats";
-import Calendar from "./Calendar";
-import Maps from "./Maps";
+import Bookings from "./Bookings";
 export {
     Login,
     Welcome,
@@ -18,8 +16,6 @@ export {
     Home,
     Notifications,
     Profile,
-    Chats,
-    Calendar,
-    Maps
+    Bookings
     
 }

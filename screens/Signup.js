@@ -1,4 +1,4 @@
-import { View, Text, Image, Pressable,Alert, TextInput, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Image, Pressable,Alert, TextInput, ScrollView, StyleSheet, TouchableOpacity, AppState } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from '../constants/color';
@@ -6,58 +6,52 @@ import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
 import Button from '../components/Button';
 import { supabase } from '../lib/supabase';
-import PasswordInput from '../components/PasswordInput';
 import PhoneNumberInput from '../components/PhoneNumberInput';
 
-export const Signup = ({ navigation }) => {
+
+// Tells Supabase Auth to continuously refresh the session automatically if
+// the app is in the foreground. When this is added, you will continue to receive
+// `onAuthStateChange` events with the `TOKEN_REFRESHED` or `SIGNED_OUT` event
+// if the user's session is terminated. This should only be registered once.
+AppState.addEventListener('change', (state) => {
+    if (state === 'active') {
+      supabase.auth.startAutoRefresh()
+    } else {
+      supabase.auth.stopAutoRefresh()
+    }
+})
+
+export const Signup = ({navigation}) => {
     const [email, setEmail] = useState('')
-    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [phone, setPhone] = useState('')
+    const [username, setUsername] = useState('')
     const [loading, setLoading] = useState(false)
     const [isPasswordShown, setIsPasswordShown] = useState(true);
     const [isChecked, setIsChecked] = useState(false);
     
 
-    const signUpUser = async () => {
-        
+    async function signUpNewUser() {
+        setLoading(true)
         const { data, error } = await supabase.auth.signUp({
-            email: email,
-            password: password,
-            username: username
+          email: email,
+          password: password,
+          options: {
+            emailRedirectTo: 'bio.telvin://Home',
+            data:{username:username}
+          },
+          
         })
-        if (error) {
-            console.error('Error signing up:', error);
-        } else {
-            console.log('User signed up successfully:', data);
-            navigation.navigate("Login")
-        }
-    };
-
-    
-    // async function signUpWithEmail() {
-    //     setLoading(true)
-    //     const {
-    //       data: { session },
-    //       error,
-    //     } = await supabase.auth.signUp({
-    //       email: email,
-    //       password: password,
-    //     })
-    
-    //     if (error) Alert.alert(error.message)
-    //     if (!session) Alert.alert('Please check your inbox for email verification!')
-    //     setLoading(false)
-    //   }
-
-    
-    
-
+        if (error) Alert.alert(error.message)
+        if (data) Alert.alert('Please check your inbox for email verification!')
+        setLoading(false)
+      }
+       
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
             <ScrollView>
 
                 <View style={{ flex: 1, marginHorizontal: 22 }}>
+
                 <View style={{ marginVertical: 22 }}>
                     <Text style={{
                         fontSize: 22,
@@ -73,7 +67,7 @@ export const Signup = ({ navigation }) => {
                         color: COLORS.black
                     }}>Connect with your friend today!</Text>
                 </View>
-
+            
                 <View style={{ marginBottom: 12 }}>
                     <Text style={{
                         fontSize: 16,
@@ -103,8 +97,7 @@ export const Signup = ({ navigation }) => {
                         />
                     </View>
                 </View>
-                
-                
+
                 <View style={{ marginBottom: 12 }}>
                     <Text style={{
                         fontSize: 16,
@@ -132,17 +125,6 @@ export const Signup = ({ navigation }) => {
                             }}
                         />
                     </View>
-                </View>
-
-                <View style={{ marginBottom: 12 }}>
-                    <Text style={{
-                        fontSize: 16,
-                        fontWeight: 400,
-                        marginVertical: 8
-                    }}>Mobile Number</Text>
-
-                    <PhoneNumberInput phone={phone} setPhone={setPhone} />
-                    
                 </View>
 
                 <View style={{ marginBottom: 12 }}>
@@ -191,8 +173,6 @@ export const Signup = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
                 </View>
-                
-               
 
                 <View style={{
                     flexDirection: 'row',
@@ -208,7 +188,6 @@ export const Signup = ({ navigation }) => {
                     <Text>I agree to the terms and conditions</Text>
                 </View>
 
-
                 <Button
                     title="Sign Up"
                     filled
@@ -217,7 +196,7 @@ export const Signup = ({ navigation }) => {
                         marginBottom: 4,
                     }}
                     disabled={loading}
-                    onPress={() => signUpUser()}
+                    onPress={() => signUpNewUser()}
                    
                 />
 
