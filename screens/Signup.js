@@ -15,39 +15,40 @@ export const Signup = ({ navigation }) => {
     const [password, setPassword] = useState('')
     const [phone, setPhone] = useState('')
     const [loading, setLoading] = useState(false)
-    const [isPasswordShown, setIsPasswordShown] = useState(false);
+    const [isPasswordShown, setIsPasswordShown] = useState(true);
     const [isChecked, setIsChecked] = useState(false);
     
 
-    // const signUpUser = async () => {
+    const signUpUser = async () => {
         
-    //     const { data, error } = await supabase.auth.signUp({
-    //         email: email,
-    //         password: password
-    //     })
-    //     if (error) {
-    //         console.error('Error signing up:', error);
-    //     } else {
-    //         console.log('User signed up successfully:', data);
-    //         navigation.navigate("Login")
-    //     }
-    // };
+        const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+            username: username
+        })
+        if (error) {
+            console.error('Error signing up:', error);
+        } else {
+            console.log('User signed up successfully:', data);
+            navigation.navigate("Login")
+        }
+    };
 
     
-    async function signUpWithEmail() {
-        setLoading(true)
-        const {
-          data: { session },
-          error,
-        } = await supabase.auth.signUp({
-          email: email,
-          password: password,
-        })
+    // async function signUpWithEmail() {
+    //     setLoading(true)
+    //     const {
+    //       data: { session },
+    //       error,
+    //     } = await supabase.auth.signUp({
+    //       email: email,
+    //       password: password,
+    //     })
     
-        if (error) Alert.alert(error.message)
-        if (!session) Alert.alert('Please check your inbox for email verification!')
-        setLoading(false)
-      }
+    //     if (error) Alert.alert(error.message)
+    //     if (!session) Alert.alert('Please check your inbox for email verification!')
+    //     setLoading(false)
+    //   }
 
     
     
@@ -140,11 +141,56 @@ export const Signup = ({ navigation }) => {
                         marginVertical: 8
                     }}>Mobile Number</Text>
 
-                    <PhoneNumberInput />
+                    <PhoneNumberInput phone={phone} setPhone={setPhone} />
                     
                 </View>
 
-                <PasswordInput password={password} setPassword={setPassword}/>
+                <View style={{ marginBottom: 12 }}>
+                    <Text style={{
+                        fontSize: 16,
+                        fontWeight: 400,
+                        marginVertical: 8
+                    }}>Password</Text>
+
+                    <View style={{
+                        width: "100%",
+                        height: 48,
+                        borderColor: COLORS.black,
+                        borderWidth: 1,
+                        borderRadius: 8,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        paddingLeft: 22
+                    }}>
+                        <TextInput
+                            placeholder='Enter your password'
+                            placeholderTextColor={COLORS.black}
+                            onChangeText={(text) => setPassword(text)}
+                            value={password}
+                            secureTextEntry={isPasswordShown}
+                            style={{
+                                width: "100%"
+                            }}
+                        />
+
+                        <TouchableOpacity
+                            onPress={() => setIsPasswordShown(!isPasswordShown)}
+                            style={{
+                                position: "absolute",
+                                right: 12
+                            }}
+                        >
+                            {
+                                isPasswordShown == true ? (
+                                    <Ionicons name="eye-off" size={24} color={COLORS.black} />
+                                ) : (
+                                    <Ionicons name="eye" size={24} color={COLORS.black} />
+                                )
+                            }
+
+                        </TouchableOpacity>
+                    </View>
+                </View>
                 
                
 
@@ -171,7 +217,8 @@ export const Signup = ({ navigation }) => {
                         marginBottom: 4,
                     }}
                     disabled={loading}
-                    onPress={() => signUpWithEmail()}
+                    onPress={() => signUpUser()}
+                   
                 />
 
                 {/* <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 20 }}>

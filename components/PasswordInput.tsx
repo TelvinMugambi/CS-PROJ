@@ -32,7 +32,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ password, setPassword }) 
   const [suggestions, setSuggestions] = useState([]);
   const [strength, setStrength] = useState('');
 
-  const validatePassword = (input) => {
+  const validatePassword = (input : any) => {
     let newSuggestions = [];
     if (input.length < 8) {
       newSuggestions.push('Password should be at least 8 characters long')
