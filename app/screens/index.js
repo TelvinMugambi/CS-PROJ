@@ -1,21 +1,21 @@
-import Login from "./Login";
 import Welcome from "./Welcome";
 import Signup from "./Signup";
+import Login from "./Login";
 import ResetPassword from "./ResetPassword";
 import PasswordResetPage from "./PasswordResetPage";
 import Home from "./Home";
-import Profile from "./Profile";
-import Bookings from "./Bookings";
 import Search from "./Search";
-export {
-    Login,
+import Bookings from "./Booking";
+import Profile from "./Profile";
+
+export{
     Welcome,
     Signup,
+    Login,
     ResetPassword,
     PasswordResetPage,
     Home,
-    Profile,
+    Search,
     Bookings,
-    Search
-    
+    Profile
 }

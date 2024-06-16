@@ -1,12 +1,10 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View,Text } from "react-native";
-import { Home, Profile, Bookings, Search} from "../screens";
+import { Tabs } from 'expo-router';
+import { View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-const Tab = createBottomTabNavigator();
-export default function Application({navigation}:any){
-    return (
-      
-        <Tab.Navigator 
+import { Home, Search, Bookings, Profile } from '../screens';
+export default function Application(){
+    return(
+        <Tabs
         screenOptions={{
             tabBarShowLabel: false,
             tabBarStyle:{
@@ -22,7 +20,7 @@ export default function Application({navigation}:any){
             }
         }}
         >
-        <Tab.Screen name="Home" component={Home} 
+        <Tabs.Screen name="Home" 
         options={{
             headerShown: false,
             tabBarIcon: ()=>(
@@ -34,7 +32,7 @@ export default function Application({navigation}:any){
 
         }} 
         />
-        <Tab.Screen name="Search" component={Search} 
+        <Tabs.Screen name="Search"
         options={{
             headerShown: false,
             tabBarIcon: ()=>(
@@ -46,7 +44,7 @@ export default function Application({navigation}:any){
 
         }} 
         />
-        <Tab.Screen name = "Bookings" component={Bookings} 
+        <Tabs.Screen name = "Booking"
         options={{
             headerShown: false,
             tabBarIcon: ()=>(
@@ -56,7 +54,7 @@ export default function Application({navigation}:any){
                 </View>
             )
         }} />
-        <Tab.Screen name = "Profile" component={Profile} 
+        <Tabs.Screen name = "Profile"
         options={{
             headerShown: false,
             tabBarIcon: ()=>(
@@ -66,6 +64,6 @@ export default function Application({navigation}:any){
                 </View>
             )
         }} />
-      </Tab.Navigator>
+        </Tabs>
     )
 }
